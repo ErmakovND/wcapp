@@ -1,14 +1,111 @@
 package nd.ermakov.wcapp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.time.LocalDate;
 
-public interface WeatherRecord extends Record {
-    LocalDate getDate();
-    String getLocation();
-    double getTemperatureC();
-    double getWindKph();
-    double getPrecipitationMm();
-    double getVisibilityKm();
-    double getHumidity();
-    String getWeather();
+@Entity
+public class WeatherRecord {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
+    private long id;
+    private String location;
+    private LocalDate date;
+    private double temperatureC;
+    private double windKph;
+    private double precipitationMm;
+    private double visibilityKm;
+    private double humidity;
+    private String weather;
+
+    public WeatherRecord() { }
+
+    public WeatherRecord(String location, LocalDate date, double temperatureC, double windKph, double precipitationMm, double visibilityKm, double humidity, String weather) {
+        this.location = location;
+        this.date = date;
+        this.temperatureC = temperatureC;
+        this.windKph = windKph;
+        this.precipitationMm = precipitationMm;
+        this.visibilityKm = visibilityKm;
+        this.humidity = humidity;
+        this.weather = weather;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public double getTemperatureC() {
+        return temperatureC;
+    }
+
+    public void setTemperatureC(double temperatureC) {
+        this.temperatureC = temperatureC;
+    }
+
+    public double getWindKph() {
+        return windKph;
+    }
+
+    public void setWindKph(double windKph) {
+        this.windKph = windKph;
+    }
+
+    public double getPrecipitationMm() {
+        return precipitationMm;
+    }
+
+    public void setPrecipitationMm(double precipitationMm) {
+        this.precipitationMm = precipitationMm;
+    }
+
+    public double getVisibilityKm() {
+        return visibilityKm;
+    }
+
+    public void setVisibilityKm(double visibilityKm) {
+        this.visibilityKm = visibilityKm;
+    }
+
+    public double getHumidity() {
+        return humidity;
+    }
+
+    public void setHumidity(double humidity) {
+        this.humidity = humidity;
+    }
+
+    public String getWeather() {
+        return weather;
+    }
+
+    public void setWeather(String weather) {
+        this.weather = weather;
+    }
 }

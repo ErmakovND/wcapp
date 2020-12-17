@@ -1,11 +1,14 @@
 package nd.ermakov.wcapp.repository;
 
-import nd.ermakov.wcapp.date.DateRange;
 import nd.ermakov.wcapp.model.WeatherRecord;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
-public interface WeatherRepository {
-    List<WeatherRecord> findAllByLocationAndDateRange(String location, DateRange range);
-    void saveAll(List<WeatherRecord> records);
+@Repository
+public interface WeatherRepository extends JpaRepository<WeatherRecord, Long> {
+    List<WeatherRecord> findAllByLocationAndDateBetweenOrderByDateDesc(String location, LocalDate start, LocalDate end);
+    boolean existsByLocationAndDate(String location, LocalDate date);
 }

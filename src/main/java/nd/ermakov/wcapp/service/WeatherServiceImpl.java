@@ -19,13 +19,8 @@ public class WeatherServiceImpl implements WeatherService {
 
     private DateRange savedDateRange = DateRange.empty();
 
-    @Autowired
-    public void setWeatherRepository(WeatherRepository weatherRepository) {
+    public WeatherServiceImpl(WeatherRepository weatherRepository, WeatherWebXmlLoader weatherLoader) {
         this.weatherRepository = weatherRepository;
-    }
-
-    @Autowired
-    public void setWeatherLoader(WeatherWebXmlLoader weatherLoader) {
         this.weatherLoader = weatherLoader;
     }
 
@@ -33,9 +28,15 @@ public class WeatherServiceImpl implements WeatherService {
     public List<WeatherRecord> getLastByLocation(Integer last, String location) throws XmlException {
         DateRange range = new DateRange(LocalDate.now().minusDays(last - 1), LocalDate.now());
         if (!range.in(savedDateRange)) {
-            weatherRepository.saveAll(weatherLoader.loadAllByLocationAndDateRange(location, range));
+            for (WeatherRecord weather :
+                    weatherLoader.loadAllByLocationAndDateRange(location, range)) {
+                if (!weatherRepository.existsByLocationAndDate(weather.getLocation(), weather.getDate())) {
+                    weatherRepository.save(weather);
+                }
+            }
             savedDateRange = range;
         }
-        return weatherRepository.findAllByLocationAndDateRange(location, range);
+        return weatherRepository
+                .findAllByLocationAndDateBetweenOrderByDateDesc(location, range.getStart(), range.getEnd());
     }
 }

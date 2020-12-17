@@ -19,8 +19,7 @@ public class WeatherController {
 
     private WeatherService weatherService;
 
-    @Autowired
-    public void setWeatherService(WeatherService weatherService) {
+    public WeatherController(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
 

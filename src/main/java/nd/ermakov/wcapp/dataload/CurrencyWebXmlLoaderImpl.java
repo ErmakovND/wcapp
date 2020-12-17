@@ -3,7 +3,6 @@ package nd.ermakov.wcapp.dataload;
 import nd.ermakov.wcapp.date.DateRange;
 import nd.ermakov.wcapp.format.DoubleFormat;
 import nd.ermakov.wcapp.model.CurrencyRecord;
-import nd.ermakov.wcapp.model.CurrencyRecordImpl;
 import noNamespace.ValCursDocument;
 import noNamespace.ValutaDocument;
 import org.apache.xmlbeans.XmlException;
@@ -85,7 +84,7 @@ public class CurrencyWebXmlLoaderImpl implements CurrencyWebXmlLoader {
         List<CurrencyRecord> result = new ArrayList<>();
         for (ValCursDocument.ValCurs.Record valCursRecord:
                 valCurs.getRecordArray()) {
-            result.add(new CurrencyRecordImpl(
+            result.add(new CurrencyRecord(
                     DoubleFormat.parse(valCursRecord.getValue()),
                     LocalDate.parse(valCursRecord.getDate(), responseDateTimeFormatter))
             );
