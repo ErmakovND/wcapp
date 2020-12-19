@@ -20,13 +20,8 @@ public class PredictServiceImpl implements PredictService {
 
     private RegressionModel regressionModel = new RegressionModel();
 
-    @Autowired
-    public void setCurrencyService(CurrencyService currencyService) {
+    public PredictServiceImpl(CurrencyService currencyService, WeatherService weatherService) {
         this.currencyService = currencyService;
-    }
-
-    @Autowired
-    public void setWeatherService(WeatherService weatherService) {
         this.weatherService = weatherService;
     }
 

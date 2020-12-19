@@ -1,9 +1,7 @@
 package nd.ermakov.wcapp.dataload;
 
 import nd.ermakov.wcapp.date.DateRange;
-import nd.ermakov.wcapp.format.DoubleFormat;
 import nd.ermakov.wcapp.model.WeatherRecord;
-import nd.ermakov.wcapp.model.WeatherRecordImpl;
 import noNamespace.RootDocument;
 import org.apache.xmlbeans.XmlException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +54,7 @@ public class WeatherWebXmlLoaderImpl implements WeatherWebXmlLoader {
         RootDocument.Root.Forecast.Forecastday.Day weatherDay =
                 RootDocument.Factory.parse(forecastXml).getRoot().getForecast().getForecastday().getDay();
 
-        return new WeatherRecordImpl(
+        return new WeatherRecord(
                 location,
                 date,
                 weatherDay.getAvgtempC(),

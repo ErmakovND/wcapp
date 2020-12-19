@@ -20,8 +20,7 @@ public class CurrencyController {
 
     private CurrencyService currencyService;
 
-    @Autowired
-    public void setCurrencyService(CurrencyService currencyService) {
+    public CurrencyController(CurrencyService currencyService) {
         this.currencyService = currencyService;
     }
 

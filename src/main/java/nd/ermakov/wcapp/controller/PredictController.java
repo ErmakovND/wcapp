@@ -17,8 +17,7 @@ public class PredictController {
 
     private PredictService predictService;
 
-    @Autowired
-    public void setPredictService(PredictService predictService) {
+    public PredictController(PredictService predictService) {
         this.predictService = predictService;
     }
 

@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.text.ParseException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class CurrencyServiceImpl implements CurrencyService {
@@ -21,13 +20,8 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     private DateRange savedDateRange = DateRange.empty();
 
-    @Autowired
-    public void setCurrencyRepository(CurrencyRepository currencyRepository) {
+    public CurrencyServiceImpl(CurrencyRepository currencyRepository, CurrencyWebXmlLoader currencyLoader) {
         this.currencyRepository = currencyRepository;
-    }
-
-    @Autowired
-    public void setCurrencyLoader(CurrencyWebXmlLoader currencyLoader) {
         this.currencyLoader = currencyLoader;
     }
 
@@ -35,9 +29,15 @@ public class CurrencyServiceImpl implements CurrencyService {
     public List<CurrencyRecord> getLast(Integer last) throws ParseException, XmlException {
         DateRange range = new DateRange(LocalDate.now().minusDays(last - 1), LocalDate.now());
         if (!range.in(savedDateRange)) {
-            currencyRepository.saveAll(currencyLoader.loadAllByDateRange(range));
+            for (CurrencyRecord currency :
+                    currencyLoader.loadAllByDateRange(range)) {
+                if (!currencyRepository.existsByDate(currency.getDate())) {
+                    currencyRepository.save(currency);
+                }
+            }
             savedDateRange = range;
         }
-        return currencyRepository.findAllByDateRange(range);
+        return currencyRepository
+                .findAllByDateBetweenOrderByDateDesc(range.getStart(), range.getEnd());
     }
 }
