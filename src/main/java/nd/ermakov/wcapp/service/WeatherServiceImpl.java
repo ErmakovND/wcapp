@@ -27,7 +27,7 @@ public class WeatherServiceImpl implements WeatherService {
 
     @Override
     public List<WeatherRecord> getLastByLocation(Integer last, String location) throws XmlException {
-        DateRange range = new DateRange(LocalDate.now().minusDays(last - 1), LocalDate.now());
+        DateRange range = new DateRange(LocalDate.now().minusDays(last - 1L), LocalDate.now());
         if (!range.in(savedDateRange.get(location))) {
             for (WeatherRecord weather :
                     weatherLoader.loadAllByLocationAndDateRange(location, range)) {

@@ -99,6 +99,6 @@ public class PredictServiceImpl implements PredictService {
                 sum += d;
             }
         }
-        return sum / n;
+        return n == 0 ? sum : sum / n;
     }
 }

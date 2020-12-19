@@ -27,7 +27,7 @@ public class CurrencyServiceImpl implements CurrencyService {
 
     @Override
     public List<CurrencyRecord> getLast(Integer last) throws ParseException, XmlException {
-        DateRange range = new DateRange(LocalDate.now().minusDays(last - 1), LocalDate.now());
+        DateRange range = new DateRange(LocalDate.now().minusDays(last - 1L), LocalDate.now());
         if (!range.in(savedDateRange)) {
             for (CurrencyRecord currency :
                     currencyLoader.loadAllByDateRange(range)) {
