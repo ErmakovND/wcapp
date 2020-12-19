@@ -76,7 +76,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<javaSource>11</javaSource>
+					<javaSource>1.8</javaSource>
 					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
 				</configuration>
 			</plugin>
