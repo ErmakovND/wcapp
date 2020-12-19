@@ -20,8 +20,7 @@ public class WebLoadClient {
                                 .queryParams(params)
                                 .build()
                 )
-                .retrieve()
-                .bodyToMono(String.class)
+                .exchangeToMono(clientResponse -> clientResponse.bodyToMono(String.class))
                 .block();
     }
 }
