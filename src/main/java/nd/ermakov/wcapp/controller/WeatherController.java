@@ -28,10 +28,13 @@ public class WeatherController {
                                         @RequestParam(defaultValue = "1") Integer last) {
         try {
             List<WeatherRecord> weatherRecords = weatherService.getLastByLocation(last, location);
+            if (weatherRecords.isEmpty()) {
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
             return new ResponseEntity<>(last == 1 ? weatherRecords.get(0) : weatherRecords, HttpStatus.OK);
         } catch (XmlException e) {
             e.printStackTrace();
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 }
