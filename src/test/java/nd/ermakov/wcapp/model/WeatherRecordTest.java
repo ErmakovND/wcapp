@@ -18,7 +18,6 @@ class WeatherRecordTest {
         double temeratureC = 2.;
         double windKph = 3.;
         double precipitationMm = 4.;
-        double visibilityKm = 5.;
         double humidity = 6.;
         String weather = "sunny";
 
@@ -28,7 +27,6 @@ class WeatherRecordTest {
         weatherRecord.setTemperatureC(temeratureC);
         weatherRecord.setWindKph(windKph);
         weatherRecord.setPrecipitationMm(precipitationMm);
-        weatherRecord.setVisibilityKm(visibilityKm);
         weatherRecord.setHumidity(humidity);
         weatherRecord.setWeather(weather);
 
@@ -38,7 +36,6 @@ class WeatherRecordTest {
         assertEquals(temeratureC, weatherRecord.getTemperatureC());
         assertEquals(windKph, weatherRecord.getWindKph());
         assertEquals(precipitationMm, weatherRecord.getPrecipitationMm());
-        assertEquals(visibilityKm, weatherRecord.getVisibilityKm());
         assertEquals(humidity, weatherRecord.getHumidity());
         assertEquals(weather, weatherRecord.getWeather());
     }

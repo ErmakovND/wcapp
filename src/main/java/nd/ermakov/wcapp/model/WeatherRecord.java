@@ -20,19 +20,17 @@ public class WeatherRecord {
     private double temperatureC;
     private double windKph;
     private double precipitationMm;
-    private double visibilityKm;
     private double humidity;
     private String weather;
 
     public WeatherRecord() { }
 
-    public WeatherRecord(String location, LocalDate date, double temperatureC, double windKph, double precipitationMm, double visibilityKm, double humidity, String weather) {
+    public WeatherRecord(String location, LocalDate date, double temperatureC, double windKph, double precipitationMm, double humidity, String weather) {
         this.location = location;
         this.date = date;
         this.temperatureC = temperatureC;
         this.windKph = windKph;
         this.precipitationMm = precipitationMm;
-        this.visibilityKm = visibilityKm;
         this.humidity = humidity;
         this.weather = weather;
     }
@@ -83,14 +81,6 @@ public class WeatherRecord {
 
     public void setPrecipitationMm(double precipitationMm) {
         this.precipitationMm = precipitationMm;
-    }
-
-    public double getVisibilityKm() {
-        return visibilityKm;
-    }
-
-    public void setVisibilityKm(double visibilityKm) {
-        this.visibilityKm = visibilityKm;
     }
 
     public double getHumidity() {

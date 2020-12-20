@@ -61,7 +61,6 @@ public class WeatherWebXmlLoaderImpl implements WeatherWebXmlLoader {
                 weatherDay.getMaxwindKph(),
                 weatherDay.getTotalprecipMm(),
                 weatherDay.getAvgvisKm(),
-                weatherDay.getAvghumidity(),
                 weatherDay.getCondition().getText()
         );
     }

@@ -38,7 +38,7 @@ class PredictServiceImplTest {
     void testPredict() throws ParseException, XmlException {
         String location = "Moscow";
         CurrencyRecord currencyRecord = new CurrencyRecord(70, LocalDate.now());
-        WeatherRecord weatherRecord = new WeatherRecord(location, LocalDate.now(), 0, 0, 0, 0, 0, "");
+        WeatherRecord weatherRecord = new WeatherRecord(location, LocalDate.now(), 0, 0, 0, 0, "");
 
         when(currencyService.getLast(8)).thenReturn(Collections.singletonList(currencyRecord));
         when(weatherService.getLastByLocation(8, location)).thenReturn(Collections.singletonList(weatherRecord));

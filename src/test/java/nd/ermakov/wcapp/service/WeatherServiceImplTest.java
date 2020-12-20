@@ -38,7 +38,7 @@ class WeatherServiceImplTest {
         int last = 2;
         String location = "London";
         DateRange range = new DateRange(LocalDate.now().minusDays(last - 1L), LocalDate.now());
-        WeatherRecord weatherRecord = new WeatherRecord(location, LocalDate.now(), 0, 0, 0, 0, 0, "");
+        WeatherRecord weatherRecord = new WeatherRecord(location, LocalDate.now(), 0, 0, 0, 0, "");
         List<WeatherRecord> weatherRecords = Arrays.asList(weatherRecord, weatherRecord);
 
         when(weatherWebXmlLoader.loadAllByLocationAndDateRange(anyString(), any(DateRange.class)))

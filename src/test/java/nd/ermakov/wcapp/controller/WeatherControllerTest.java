@@ -40,7 +40,6 @@ class WeatherControllerTest {
                 0,
                 0,
                 0,
-                0,
                 "");
     }
 
