@@ -3,6 +3,7 @@ package nd.ermakov.wcapp.config;
 import nd.ermakov.wcapp.dataload.WebLoadClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.format.DateTimeFormatter;
 
@@ -11,12 +12,12 @@ public class WebConfig {
 
     @Bean
     public WebLoadClient currencyLoadClient() {
-        return new WebLoadClient("http://www.cbr.ru");
+        return new WebLoadClient(WebClient.create("http://www.cbr.ru"));
     }
 
     @Bean
     public WebLoadClient weatherLoadClient() {
-        return new WebLoadClient("http://api.weatherapi.com/v1");
+        return new WebLoadClient(WebClient.create("http://api.weatherapi.com/v1"));
     }
 
     @Bean

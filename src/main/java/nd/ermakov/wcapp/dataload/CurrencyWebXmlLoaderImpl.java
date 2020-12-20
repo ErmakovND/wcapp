@@ -72,7 +72,6 @@ public class CurrencyWebXmlLoaderImpl implements CurrencyWebXmlLoader {
     @Override
     public List<CurrencyRecord> loadAllByDateRange(DateRange range) throws XmlException, ParseException {
         String currencyCode = loadCode();
-
         MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
         params.add(startDateParameterName, range.getStart().format(requestDateTimeFormatter));
         params.add(endDateParameterName, range.getEnd().format(requestDateTimeFormatter));
@@ -80,7 +79,6 @@ public class CurrencyWebXmlLoaderImpl implements CurrencyWebXmlLoader {
 
         String valCursXml = webLoadClient.get(currencyValuesPath, params);
         ValCursDocument.ValCurs valCurs = ValCursDocument.Factory.parse(valCursXml).getValCurs();
-
         List<CurrencyRecord> result = new ArrayList<>();
         for (ValCursDocument.ValCurs.Record valCursRecord:
                 valCurs.getRecordArray()) {

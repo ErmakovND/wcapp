@@ -7,8 +7,8 @@ public class WebLoadClient {
 
     private WebClient webClient;
 
-    public WebLoadClient(String baseUrl) {
-        webClient = WebClient.create(baseUrl);
+    public WebLoadClient(WebClient webClient) {
+        this.webClient = webClient;
     }
 
     public String get(String url, MultiValueMap<String, String> params) {
