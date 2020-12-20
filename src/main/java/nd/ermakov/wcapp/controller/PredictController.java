@@ -21,7 +21,7 @@ public class PredictController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getPrediction() {
+    public ResponseEntity<Object> getPrediction() {
         try {
             return new ResponseEntity<>(predictService.predictCurrencyRate(), HttpStatus.OK);
         } catch (ParseException | XmlException e) {

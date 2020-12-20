@@ -23,7 +23,7 @@ public class WeatherController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getWeather(@RequestParam(defaultValue = "Moscow") String location,
+    public ResponseEntity<Object> getWeather(@RequestParam(defaultValue = "Moscow") String location,
                                         @RequestParam(defaultValue = "1") Integer last) {
         try {
             List<WeatherRecord> weatherRecords = weatherService.getLastByLocation(last, location);

@@ -24,7 +24,7 @@ public class CurrencyController {
     }
 
     @GetMapping
-    public ResponseEntity<?> getCurrency(@RequestParam(defaultValue = "1") Integer last) {
+    public ResponseEntity<Object> getCurrency(@RequestParam(defaultValue = "1") Integer last) {
         if (last < 0) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
