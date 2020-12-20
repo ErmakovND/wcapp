@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -47,7 +48,7 @@ class CurrencyControllerTest {
     @Test
     void testCurrencyCurrentRequest() throws ParseException, XmlException {
         int last = 1;
-        when(currencyService.getLast(1)).thenReturn(Collections.singletonList(currencyRecord));
+        when(currencyService.getLast(last)).thenReturn(Collections.singletonList(currencyRecord));
         ResponseEntity<?> responseEntity = currencyController.getCurrency(last);
         verify(currencyService, times(1)).getLast(last);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -58,10 +59,26 @@ class CurrencyControllerTest {
     void testCurrencyHistoryRequest() throws ParseException, XmlException {
         int last = 2;
         List<CurrencyRecord> currencyRecords = Arrays.asList(currencyRecord, currencyRecord);
-        when(currencyService.getLast(2)).thenReturn(currencyRecords);
+        when(currencyService.getLast(last)).thenReturn(currencyRecords);
         ResponseEntity<?> responseEntity = currencyController.getCurrency(last);
         verify(currencyService, times(1)).getLast(last);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertSame(currencyRecords, responseEntity.getBody());
+    }
+
+    @Test
+    void testCurrencyRequestException() throws ParseException, XmlException {
+        int last = 1;
+        when(currencyService.getLast(last)).thenThrow(XmlException.class);
+        ResponseEntity<?> responseEntity = currencyController.getCurrency(last);
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+    }
+
+    @Test
+    void testCurrencyRequestNotFound() throws ParseException, XmlException {
+        int last = 1;
+        when(currencyService.getLast(last)).thenReturn(new ArrayList<>());
+        ResponseEntity<?> responseEntity = currencyController.getCurrency(last);
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 }

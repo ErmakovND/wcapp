@@ -76,4 +76,13 @@ class WeatherControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertSame(weatherRecords, responseEntity.getBody());
     }
+
+    @Test
+    void testWeatherRequestException() throws XmlException {
+        String location = "";
+        int last = 1;
+        when(weatherService.getLastByLocation(last, location)).thenThrow(XmlException.class);
+        ResponseEntity<?> responseEntity = weatherController.getWeather(location, last);
+        assertEquals(HttpStatus.BAD_REQUEST, responseEntity.getStatusCode());
+    }
 }

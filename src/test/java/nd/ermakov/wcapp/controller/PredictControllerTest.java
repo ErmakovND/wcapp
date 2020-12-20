@@ -36,4 +36,11 @@ class PredictControllerTest {
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(100D, responseEntity.getBody());
     }
+
+    @Test
+    void testPredictRequestError() throws ParseException, XmlException {
+        when(predictService.predictCurrencyRate()).thenThrow(XmlException.class);
+        ResponseEntity<?> responseEntity = predictController.getPrediction();
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, responseEntity.getStatusCode());
+    }
 }
