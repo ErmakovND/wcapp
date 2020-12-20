@@ -5,7 +5,6 @@ import nd.ermakov.wcapp.date.DateRange;
 import nd.ermakov.wcapp.model.CurrencyRecord;
 import nd.ermakov.wcapp.repository.CurrencyRepository;
 import org.apache.xmlbeans.XmlException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;

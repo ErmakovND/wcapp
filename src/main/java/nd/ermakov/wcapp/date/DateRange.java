@@ -2,7 +2,6 @@ package nd.ermakov.wcapp.date;
 
 import java.time.LocalDate;
 import java.util.Iterator;
-import java.util.Set;
 
 public class DateRange implements Iterable<LocalDate> {
 
