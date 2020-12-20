@@ -17,12 +17,12 @@ public class PredictServiceImpl implements PredictService {
 
     private CurrencyService currencyService;
     private WeatherService weatherService;
+    private RegressionModel regressionModel;
 
-    private RegressionModel regressionModel = new RegressionModel();
-
-    public PredictServiceImpl(CurrencyService currencyService, WeatherService weatherService) {
+    public PredictServiceImpl(CurrencyService currencyService, WeatherService weatherService, RegressionModel regressionModel) {
         this.currencyService = currencyService;
         this.weatherService = weatherService;
+        this.regressionModel = regressionModel;
     }
 
     @Override

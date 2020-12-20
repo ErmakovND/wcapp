@@ -1,7 +1,9 @@
 package nd.ermakov.wcapp.regression;
 
 import org.apache.commons.math3.stat.regression.OLSMultipleLinearRegression;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RegressionModel {
 
     private OLSMultipleLinearRegression regression = new OLSMultipleLinearRegression();
