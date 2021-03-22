@@ -15,7 +15,7 @@
 	<description>Weather-Currency app</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 	</properties>
 
 	<dependencies>
@@ -88,7 +88,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<javaSource>1.8</javaSource>
+					<javaSource>11</javaSource>
 					<schemaDirectory>src/main/resources/xsd</schemaDirectory>
 				</configuration>
 			</plugin>
