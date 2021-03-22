@@ -2,8 +2,11 @@
 
 ## Docker
 
-To build an image:
+Build project:
+`mvnw clean install`
+
+Build an image:
 `docker build -t wcapp .`
 
-To start container:
+Start container:
 `docker run -p 8080:8080 -it wcapp:latest`
