@@ -60,7 +60,7 @@ class CurrencyWebXmlLoaderImplTest {
         ValCursDocument.ValCurs valCurs = ValCursDocument.ValCurs.Factory.newInstance();
         ValCursDocument.ValCurs.Record record = ValCursDocument.ValCurs.Record.Factory.newInstance();
         record.setId("id");
-        record.setValue("36.6");
+        record.setValue("36,6");
         record.setDate("01.01.2000");
         valCurs.addNewRecord();
         valCurs.setRecordArray(0, record);
