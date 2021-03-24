@@ -10,11 +10,11 @@ public class AppConfig {
 
     @Bean
     public WebLoadClient currencyServiceClient() {
-        return new WebLoadClient(WebClient.create("http://localhost:8081/currency"));
+        return new WebLoadClient(WebClient.create("http://currency-service:8081/currency"));
     }
 
     @Bean
     public WebLoadClient weatherServiceClient() {
-        return new WebLoadClient(WebClient.create("http://localhost:8082/weather"));
+        return new WebLoadClient(WebClient.create("http://weather-service:8082/weather"));
     }
 }
