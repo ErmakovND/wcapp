@@ -1,0 +1,30 @@
+version: "3"
+services:
+  eureka-server:
+    build: eureka-server
+    image: eureka-server
+    ports:
+      - "8761:8761"
+  currency-service:
+    build: currency-service
+    image: currency-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      - eureka-server
+  weather-service:
+    build: weather-service
+    image: weather-service
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
+  predict-service:
+    build: predict-service
+    image: predict-service
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+      - currency-service
+      - weather-service
